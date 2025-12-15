@@ -1,13 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
-project(my_library 
-	C CXX ASM
-)
-pico_sdk_init()
 
 # ============= SCANNING FOLDER STRUCTURE ===============
 file(GLOB CHILD_FOLDERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
 foreach(folder ${CHILD_FOLDERS})
-    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${folder})
+    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${folder}/CMakeLists.txt)
         add_subdirectory(${folder})
     endif()
 endforeach()
