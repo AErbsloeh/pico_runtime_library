@@ -15,7 +15,8 @@ if(PICO_CYW43_SUPPORTED)
         DESTINATION ${CMAKE_BINARY_DIR}/..
     )
     target_link_libraries(hal_wifi_tcp INTERFACE
-		pico_cyw43_arch_none
+		#pico_cyw43_arch_none
+		pico_cyw43_arch_lwip_threadsafe_background
     )
 endif()
 
@@ -37,7 +38,8 @@ target_link_libraries(hal_wifi_udp INTERFACE
 )
 if(PICO_CYW43_SUPPORTED)
     target_link_libraries(hal_wifi_udp INTERFACE
-		pico_cyw43_arch_none
+		#pico_cyw43_arch_none
+		pico_cyw43_arch_lwip_threadsafe_background
     )
 endif()
 
