@@ -31,7 +31,7 @@ typedef struct{
 } spi_rp2_t;
 
 static spi_rp2_t DEVICE_SPI_DEFAULT = {
-    .pin_mosi = PICO_DEFAULT_spi_rp2_tX_PIN,
+    .pin_mosi = PICO_DEFAULT_SPI_TX_PIN,
     .pin_sclk = PICO_DEFAULT_SPI_SCK_PIN,
     .pin_miso = PICO_DEFAULT_SPI_RX_PIN,
     .spi_mod = PICO_DEFAULT_SPI,
