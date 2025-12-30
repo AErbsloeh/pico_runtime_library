@@ -20,7 +20,7 @@ bool usb_wait_until_connected(void){
 
 void usb_handling_fifo_buffer(usb_rp2_t* fifo_buffer){
     char* buffer = *fifo_buffer->data;
-    buffer[fifo_buffer->position] = getchar();
+    buffer[fifo_buffer->position] = getchar_timeout_us(0);
 
     // Control lines
     if(fifo_buffer->position == 0) {
