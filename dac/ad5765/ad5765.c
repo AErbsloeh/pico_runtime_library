@@ -20,19 +20,18 @@ bool ad5765_init(ad5765_t *handler){
         gpio_init(handler->gpio_num_csn);
         gpio_set_dir(handler->gpio_num_csn, GPIO_OUT);
         gpio_put(handler->gpio_num_csn, true);
-
         configure_spi_module(handler->spi_handler, false);
     };
 
     bool state_okay = true;
     if(handler->spi_handler->fspi_khz > 30000){
-        printf("... SPI clock higher than maximal allowed 30 MHz. Please change!");
         state_okay = false;
+        return false;
     };
 
     if(handler->spi_handler->mode != 1){
-        printf("... please change SPI mode to 1");
         state_okay = false;
+        return false;
     }
 
     // --- Init of GPIOs
@@ -77,7 +76,7 @@ bool ad5765_init(ad5765_t *handler){
     ad5765_spi_rp2_transmission(handler, false, AD5765_REG_GAIN_FINE, AD5765_ADR_DAC_ALL, 0x00);
     ad5765_spi_rp2_transmission(handler, false, AD5765_REG_OFFSET, AD5765_ADR_DAC_ALL, 0x00);
 
-    handler->init_done = true && state_okay;
+    handler->init_done = true;
     return handler->init_done;
 };
 
