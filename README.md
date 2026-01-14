@@ -6,6 +6,7 @@ Enjoy. If you have questions and suggestions, please create an issue or contact 
 Further examples can be found in this [repo](https://github.com/analogdevicesinc/no-OS/tree/main).
 
 ## Hardware Abstraction Layer (hal)
+- [x] RP2-ADC interface
 - [x] SPI interface
 - [x] I2C interface
 - [x] UART interface
