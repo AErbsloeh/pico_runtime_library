@@ -19,6 +19,8 @@ Further examples can be found in this [repo](https://github.com/analogdevicesinc
 - [x] Timer
 - [ ] Bluetooth Stack
 - [ ] Wifi with different data packets like UDP, TCP
+- [x] LED control of WS2812b (using PIO)
+- [x] Clock Generator with GPIO output (using PIO)
 
 ## Device Libraries
 - [x] ADC ADS8881
@@ -38,10 +40,11 @@ Further examples can be found in this [repo](https://github.com/analogdevicesinc
 - [x] Ethernet Module CH9121
 - [ ] SD card support (WIP)
 - [ ] Ethernet module W5500
-- [x] LED control of WS2812b (using PIO)
 
-## Sensor Libraries (loading via library)
-- Environmeont Sensor: SHT21
-- Accelerator and Gyroscope: BMI270
-- Light: VEML7700
-- Distance Estimuation: VL6180x
+
+## Sensor Libraries
+- [x] Environmeont Sensor: SHT21
+- [x] Accelerator: ADXL345
+- [x] Accelerator and Gyroscope: BMI270
+- [x] Light: VEML7700
+- [x] Distance Estimuation: VL6180x
