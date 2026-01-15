@@ -1,6 +1,5 @@
 #include "dac/ad5765/ad5765.h"
 #include "hardware/gpio.h"
-#include <stdio.h>
 
 
 // ======================================== INTERNAL READ/WRITE COMMANDS ===============================================
@@ -23,7 +22,6 @@ bool ad5765_init(ad5765_t *handler){
     if(handler->spi_handler->fspi_khz > 30000){
         return false;
     };
-
     if(handler->spi_handler->mode != 1){
         return false;
     }
@@ -34,7 +32,6 @@ bool ad5765_init(ad5765_t *handler){
     gpio_set_dir(handler->gpio_num_csn, GPIO_OUT);
     gpio_set_drive_strength(handler->gpio_num_csn, GPIO_DRIVE_STRENGTH_2MA);
     gpio_put(handler->gpio_num_csn, true);
-
     // Reset DAC Data Line (Active Low)
     if(handler->use_gpio_rst){
         gpio_init(handler->gpio_num_rst);
@@ -42,7 +39,6 @@ bool ad5765_init(ad5765_t *handler){
         gpio_set_drive_strength(handler->gpio_num_rst, GPIO_DRIVE_STRENGTH_2MA);
         gpio_put(handler->gpio_num_rst, false);
     };
-
     // Load and Update DAC Data (Active Low)
     if(handler->use_gpio_ldac){
         gpio_init(handler->gpio_num_ldac);
@@ -50,7 +46,6 @@ bool ad5765_init(ad5765_t *handler){
         gpio_set_drive_strength(handler->gpio_num_ldac, GPIO_DRIVE_STRENGTH_2MA);
         gpio_put(handler->gpio_num_ldac, false);
     };
-
     // Clear DAC Data (Active Low)
     if(handler->use_gpio_clr){
         gpio_init(handler->gpio_num_clr);

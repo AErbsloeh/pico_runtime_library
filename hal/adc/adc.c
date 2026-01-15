@@ -25,10 +25,9 @@ bool rp2_adc_init(rp2_adc_t* config){
         return true;
 
     adc_init();
-    adc_gpio_init(get_gpio_rp2_adc_channel(config->adc_channel));
-    adc_select_input(config->adc_channel);
-
     config->init_done = true;
+    rp2_change_channel(config, config->adc_channel);
+
     return config->init_done;
 }
 
@@ -37,7 +36,11 @@ bool rp2_change_channel(rp2_adc_t* config, uint8_t new_channel){
     if(!config->init_done)
         return false;
 
-    adc_gpio_init(get_gpio_rp2_adc_channel(new_channel));
+    if(new_channel == RP2_ADC_TEMP)
+        adc_set_temp_sensor_enabled(true); 
+    else
+        adc_set_temp_sensor_enabled(false); 
+        adc_gpio_init(get_gpio_rp2_adc_channel(new_channel));
     adc_select_input(new_channel);
     
     config->adc_channel = new_channel;

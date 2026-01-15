@@ -15,7 +15,7 @@ bool configure_spi_module(spi_rp2_t *handler, bool use_spi_slave){
     spi_set_slave(handler->spi_mod, use_spi_slave);
     spi_set_format(
         handler->spi_mod,   
-        handler->bits_per_transfer, 
+        8,
         (handler->mode >= 2) ? SPI_CPOL_1 : SPI_CPOL_0,
         (handler->mode % 2 == 1) ? SPI_CPHA_1 : SPI_CPHA_0,
         (handler->msb_first) ? SPI_MSB_FIRST : SPI_LSB_FIRST
@@ -69,12 +69,12 @@ bool configure_spi_module_soft(spi_rp2_t *handler){
 
 uint16_t send_data_spi_module_soft(spi_rp2_t *handler, uint8_t gpio_num_csn, uint16_t data){
     uint16_t data_returned = 0;
-    uint8_t position_send = (handler->msb_first) ? (uint8_t)handler->bits_per_transfer-1 : 0;
+    uint8_t position_send = (handler->msb_first) ? 7 : 0;
     bool cpol = (handler->mode == 2) || (handler->mode == 3);
     bool cpha = (handler->mode % 2 == 1);
     
     gpio_put(gpio_num_csn, false);
-    for(uint8_t cnt=0; cnt < handler->bits_per_transfer; cnt++){
+    for(uint8_t cnt=0; cnt < 8; cnt++){
         // Starting condition
         if(cpha && cnt == 0) {
             sleep_us(1);

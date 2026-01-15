@@ -15,7 +15,6 @@
 * \param fspi_khz           Used SPI clock [in kHz]
 * \param mode               Used SPI mode
 * \param msb_first          Send MSB first in transmission
-* \param bits_per_transfer  Bit length in each SPI transmission
 * \param init_done          Boolean if initilization of SPI module is done
 */
 typedef struct{
@@ -26,7 +25,6 @@ typedef struct{
     uint16_t fspi_khz;
     uint8_t mode;
     bool msb_first;
-    uint8_t bits_per_transfer;
     bool init_done;
 } spi_rp2_t;
 
@@ -38,7 +36,6 @@ static spi_rp2_t DEVICE_SPI_DEFAULT = {
     .fspi_khz = 1000,
     .mode = 0,
     .msb_first = true,
-    .bits_per_transfer = 16,
     .init_done = false
 };
 
